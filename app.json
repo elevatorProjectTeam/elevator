@@ -1,13 +1,36 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/taskList/taskList",
+    "pages/taskDetail/taskDetail",
+    "pages/my/my",
+    "pages/releaseTask/releaseTask",
+    "pages/msgInfo/msgInfo",
+    "pages/orgMember/orgMember",
+    "pages/cancelTask/cancelTask",
+    "pages/taskAlaysis/taskAlaysis"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor":"#2697F4",
+    "list": [{
+      "pagePath": "pages/taskList/taskList",
+      "text": "任务",
+      "iconPath": "assets/images/icons/taskIcon.png",
+      "selectedIconPath": "assets/images/icons/taskIconSelected.png"
+    },
+    {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "assets/images/icons/myIcon.png",
+      "selectedIconPath": "assets/images/icons/myIconSelected.png"
+    }]
   },
   "sitemapLocation": "sitemap.json"
 }

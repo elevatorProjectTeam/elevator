@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
-	"appid": "wxd148770e68828ed3",
+	"appid": "wx060791908ce1ce8b",
 	"projectname": "elevator",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -30,13 +30,28 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "任务列表",
+					"pathName": "pages/taskList/taskList",
+					"scene": null
+				}
+			]
 		}
 	}
 }
