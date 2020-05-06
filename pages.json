@@ -1,16 +1,70 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			//首页-任务列表页
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "任务"
 			}
 		}
-	],
+	    ,{
+			//我的
+            "path" : "pages/my/my",
+            "style" : {}
+        }
+        ,{
+			//任务单详情
+            "path" : "pages/taskDetail/taskDetail",
+            "style" : {}
+        }
+        ,{
+			//登陆授权页面
+            "path" : "pages/login/login",
+            "style" : {}
+        }
+        ,{
+			//具体设备详情页
+            "path" : "pages/equipDetail/equipDetail",
+            "style" : {}
+        }
+        ,{
+			//个人信息页
+            "path" : "pages/userInfo/userInfo",
+            "style" : {}
+        }
+        ,{
+			//任务分析
+            "path" : "pages/taskAnalysis/taskAnalysis",
+            "style" : {}
+        }
+        ,{
+			//组织结构页
+            "path" : "pages/departmentStructure/departmentStructure",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "智能派单系统",
+		"navigationBarBackgroundColor": "#3291F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	    "color": "#7A7E83",
+	    "selectedColor": "#3291F8",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/index/index",
+			"iconPath":"static/images/icon/task.png",
+			"selectedIconPath":"static/images/icon/taskSelected.png",
+	         "text": "任务"
+	    }, 
+		{
+	        "pagePath": "pages/my/my",
+	        "iconPath":"static/images/icon/my.png",
+	        "selectedIconPath":"static/images/icon/mySelected.png",
+	        "text": "我的"
+	    }]
 	}
 }
