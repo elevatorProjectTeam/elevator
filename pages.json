@@ -33,6 +33,11 @@
             "style" : {}
         }
         ,{
+        //消息通知页
+            "path" : "pages/message/message",
+            "style" : {}
+        }
+        ,{
 			//任务分析
             "path" : "pages/taskAnalysis/taskAnalysis",
             "style" : {}
