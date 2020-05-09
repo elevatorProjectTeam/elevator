@@ -43,11 +43,6 @@
             "style" : {}
         }
         ,{
-			//消息通知
-            "path" : "pages/message/message",
-            "style" : {}
-        }
-        ,{
             "path" : "pages/difficultReason/difficultReason",
             "style" : {}
         }
