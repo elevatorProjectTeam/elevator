@@ -34,15 +34,18 @@
 .container-s-label{
 	height:50rpx;
 	/* background-color: #007AFF; */
+	color:#000000;
+	font-size:26rpx;
 }
 .container-s-value{
 	height:50rpx;
 	text-align: right;
-	color:#000000;
+	color:#a4a4a4;
 	display: flex;
+	font-size:26rpx;
 	flex-direction: row;
 	/* background-color: #4CD964; */
-	font-weight:bold;
+	/* font-weight:bold; */
 	
 }
 </style>

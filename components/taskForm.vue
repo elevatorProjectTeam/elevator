@@ -115,7 +115,7 @@
 	font-weight:bold;
 	height:80rpx;
 	line-height:80rpx;
-	color:#000000;
+	color:#333333;
 }
 .container-s{
 	height:80rpx;
@@ -133,7 +133,7 @@
 .container-s-value{
 	height:50rpx;
 	text-align: right;
-	color:#000000;
+	color:#a4a4a4;
 	display: flex;
 	flex-direction: row;
 	/* background-color: #4CD964; */

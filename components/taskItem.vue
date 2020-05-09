@@ -3,10 +3,14 @@
 		<view class="container">
 			<image :src="taskItem.src" class="img" mode="aspectFit"></image>
 			<view class="r-content">
-				<view class="organization-name">
-					<view class="name">{{taskItem.orgName}}</view><view class="e-num">{{taskItem.eNum}}台</view>
+				<view>
+					<text>镇区：</text>
+					<block v-for="(townShip,index) in taskItem.townShips" :key="index">
+						<text style="margin-left:20rpx;">{{townShip}}</text>
+					</block>
 				</view>
-				<view class="address"><view class="iconfont icon-dizhi"></view>{{taskItem.address}}</view>
+				<view>检测数量：<view class="e-num">{{taskItem.eNum}}台</view></view>
+				<view>检测人员：<view class="e-num">{{taskItem.inspectorNumber}}人</view></view>
 				<view class="time">{{taskItem.time}}</view>
 				<view class="tags">
 					<block v-for="(tag,index) in taskItem.tags" :key="tag">
@@ -134,8 +138,9 @@
 .r-content .organization-name .name{
 	flex:1;
 }
-.r-content .organization-name .e-num{
-	text-align: right;
+.e-num{
+	/* text-align: right; */
+	display: inline-block;
 	color:#FA783C;
 }
 .r-content .address{
@@ -153,5 +158,8 @@
 	padding:10rpx 25rpx;
 	background-color: #FEF4E9;
 	color:#E29F5C;
+}
+.r-content .time{
+	
 }
 </style>

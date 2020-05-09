@@ -1,17 +1,26 @@
 <template>
-	<view class="container">
+	<view class="taskD-container">
 		<view class="top-container">
-			<view class="title">{{type}}</view>
+			<view class="title">
+			{{type}} 
+			<uni-icons type="arrowright" size="24" class="arrow-right" color="#ffffff"></uni-icons>			
+			</view>
+			
 			<task-item :taskItem="taskItem"></task-item>
 		</view>
 		<task-form :taskForm="taskForm"></task-form>
-		<button class="finished" type="warn" @click="finished">完成检测</button>
+		<view class="eq-container">
+			<e-table></e-table>
+		</view>
+		<!-- <button class="finished" type="warn" @click="finished">完成检测</button> -->
 	</view>
 </template>
 
 <script>
 	import taskItem from "@/components/taskItem.vue"; //顶部列表项组件
 	import taskForm from '@/components/taskForm.vue'; //大的列表信息组件
+	import uniIcons from '@/components/uni-icons/uni-icons.vue'
+	import eTable from '@/components/equipTable.vue'
 	
 	export default {
 		data() {
@@ -19,7 +28,8 @@
 				taskItem:{},
 				id:0,
 				type:'待检测',
-				taskForm:[{
+				taskForm:[],
+				/* taskForm:[{
 					id:'equitmentCondition',
 					title:'设备概况',
 					list:[{
@@ -41,8 +51,8 @@
 						label:'检验时间',
 						value:'2018-06-07'
 					},]
-				},
-				{
+					}, 
+				 {
 					id:'testingInfo',
 					title:'检测信息',
 					list:[{
@@ -54,7 +64,7 @@
 						value:'2019-08-26',
 						slot:'calendar'
 					}]
-				},
+				}, 
 				{
 					id:'apartmentInfo',
 					title:'申报单位信息',
@@ -96,52 +106,62 @@
 						slot:'grade'
 					}]
 				}
-				],
+				], */
 				taskArr:[
 					{
 						id:1,
 						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社111',
-						eNum:5,
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
 						address:'中山市小榄镇竹源路36号',
 						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
 					},
 					{
 						id:2,
 						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社222',
-						eNum:5,
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
 						address:'中山市小榄镇竹源路36号',
 						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
 					},
 					{
 						id:3,
 						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社333',
-						eNum:5,
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
 						address:'中山市小榄镇竹源路36号',
 						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
 					},
 					{
 						id:4,
 						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社44',
-						eNum:5,
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
 						address:'中山市小榄镇竹源路36号',
 						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
 					},
 					{
 						id:5,
 						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社55',
-						eNum:5,
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
 						address:'中山市小榄镇竹源路36号',
 						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
 					},
 				]
 			}
@@ -171,26 +191,30 @@
 		components:{
 			'task-form':taskForm,
 			'task-item':taskItem,
-			
+			uniIcons,
+			eTable
 		}
 	}
 </script>
 
 <style>
-.container{
+.taskD-container{
 	background-color: #eaeaea;
 }
-.title{
+.taskD-container .title{
 	color:#ffffff;
 	/* padding-left:30rpx; */
 	padding:30rpx;
 	font-weight:bold;
 }
-.top-container{
+.taskD-container .arrow-right{
+	margin-left:30rpx;
+}
+.taskD-container .top-container{
 	background-color:#3291F8;
 	padding-bottom:20rpx;
 }
-.finished{
+.taskD-container .finished{
 	/* background-color: #E73822;
 	color:#ffffff;	 */
 	border-radius:none;

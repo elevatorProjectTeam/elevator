@@ -42,6 +42,15 @@
             "path" : "pages/departmentStructure/departmentStructure",
             "style" : {}
         }
+        ,{
+			//消息通知
+            "path" : "pages/message/message",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/difficultReason/difficultReason",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
