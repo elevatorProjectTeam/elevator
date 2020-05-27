@@ -19,17 +19,18 @@
 		</view>
 		<!-- 列表 -->
 		<block v-for="(tab,index) in userTab" :key="tab.id">
-			<block v-if="currentTab.id == tab.id" v-for="(taskItem) in taskArr" :key="taskItem.id">
+			<block v-if="currentTab.id == tab.id" v-for="(taskItem,index2) in taskArr" :key="taskItem.id">
 				<task-item :taskItem="taskItem" :currentTab="currentTab">
 					<block slot="button">
 						<view  class="button-container"  v-if="currentTab.button" style="z-index:999">
-							<button size="mini" class="e-button" plain="true" @click.stop="toDetail(taskItem.id)" v-if="currentTab.button">{{currentTab.button}}</button>
+							<button size="mini" class="e-button" plain="true" @click.stop="toDetail(index2)" v-if="currentTab.button">{{currentTab.button}}</button>
 						</view>
 					</block>
 					
 				</task-item>
 			</block>
 		</block>
+		<view class="no-more-task" v-if="noMoreTask">-----------没有更多数据-----------</view>
 	</view>
 </template>
 
@@ -44,6 +45,8 @@
 		data() {
 			return {
 				searchFlag:false,
+				noMoreTask:true,
+				taskPageIndex:1,
 				tabLimits:[
 					{
 						type:'member',
@@ -74,160 +77,26 @@
 					}
 				],
 				
-				taskArr:[
-					{
-						id:1,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社1-待检测',
-						eNum:7,
-						inspectorNumber:3,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						townShips:['小榄镇','东升镇','南头镇'],
-						tags:['起重机','法定检验','年度检验']
-					},
-					{
-						id:2,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社1-待检测',
-						eNum:7,
-						inspectorNumber:3,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						townShips:['小榄镇','东升镇','南头镇'],
-						tags:['起重机','法定检验','年度检验']
-					},
-					{
-						id:3,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社1-待检测',
-						eNum:7,
-						inspectorNumber:3,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						townShips:['小榄镇','东升镇','南头镇'],
-						tags:['起重机','法定检验','年度检验']
-					},
-					{
-						id:4,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社1-待检测',
-						eNum:7,
-						inspectorNumber:3,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						townShips:['小榄镇','东升镇','南头镇'],
-						tags:['起重机','法定检验','年度检验']
-					},
-					{
-						id:5,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社1-待检测',
-						eNum:7,
-						inspectorNumber:3,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						townShips:['小榄镇','东升镇','南头镇'],
-						tags:['起重机','法定检验','年度检验']
-					},
-				],
-				taskArr2:[
-					{
-						id:1,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社1-待评价',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:2,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社222',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:3,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社333',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:4,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社44',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:5,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社55',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-				],
-				taskArr3:[
-					{
-						id:1,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社1-已完成',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:2,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社222',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:3,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社333',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:4,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社44',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-					{
-						id:5,
-						src:"/static/images/temp/temp1.png",
-						orgName:'竹源股份合作经济联合社55',
-						eNum:5,
-						address:'中山市小榄镇竹源路36号',
-						time:'2019-08-16',
-						tags:['电梯','法定检验','年度检验']
-					},
-				]
+				taskArr:[],
+			/*
+			{
+					id:1,
+					src:"/static/images/temp/temp1.png",
+					orgName:'竹源股份合作经济联合社1-待检测',
+					eNum:7,
+					inspectorNumber:3,
+					address:'中山市小榄镇竹源路36号',
+					time:'2019-08-16',
+					townShips:['小榄镇','东升镇','南头镇'],
+					tags:['起重机','法定检验','年度检验']
+				},
+				
+			*/
+				
+			
 			}
 		},
-		onLoad() {
+		onLoad(option) {
 			for(var i=0;i<this.tabLimits.length;i++){
 				var thisL = this.tabLimits[i]
 				if(thisL.type == this.userType){
@@ -245,18 +114,27 @@
 					}
 				}
 			}
-			
-			uni.setStorage({
+			//获取数据
+			this.taskArr = this.getTaskItem();
+		},
+		onShow(){
+			uni.getStorage({
 				key:'currentTab',
-				data:this.userTab[0]
-			});
-			this.currentTab = this.userTab[0]
+				success:(res)=>{
+					console.log('success',res)
+					this.currentTab = res.data;
+					
+				}
+			})
 			
 		},
 		methods: {
-			toDetail(id){
+			toDetail(index){
+				
+				var thisTask = this.taskArr[index];
 				uni.navigateTo({
-					url:'/pages/taskDetail/taskDetail?id='+id,
+					url:'/pages/taskDetail/taskDetail?taskItem='+ encodeURIComponent(JSON.stringify(thisTask)),
+					
 					success:(res)=>{
 						console.log(res)
 						uni.setStorage({
@@ -272,6 +150,10 @@
 					key:'currentTab',
 					data:this.currentTab
 				})
+				this.taskArr = [];
+				this.noMoreTask = false;
+				this.taskPageIndex  = 1;
+				this.taskArr = this.getTaskItem();
 				console.log('changeTab',tab,this.currentTab)
 			},
 			clickSearch(){
@@ -286,14 +168,104 @@
 			},
 			cancel(){
 				this.searchFlag = false;
+			},
+			getTaskItem(callBack){
+				//模拟获取数据
+				 var tempTaskArr = [
+					{
+						id:Math.round(Math.random()*1000),
+						src:"/static/images/temp/temp1.png",
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
+						address:'中山市小榄镇竹源路36号',
+						time:'2019-08-16',
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
+					},
+					{
+						id:Math.round(Math.random()*1000),
+						src:"/static/images/temp/temp1.png",
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
+						address:'中山市小榄镇竹源路36号',
+						time:'2019-08-16',
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
+					},
+					{
+						id:Math.round(Math.random()*1000),
+						src:"/static/images/temp/temp1.png",
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
+						address:'中山市小榄镇竹源路36号',
+						time:'2019-08-16',
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
+					},
+					{
+						id:Math.round(Math.random()*1000),
+						src:"/static/images/temp/temp1.png",
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
+						address:'中山市小榄镇竹源路36号',
+						time:'2019-08-16',
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
+					},
+					{
+						id:Math.round(Math.random()*1000),
+						src:"/static/images/temp/temp1.png",
+						orgName:'竹源股份合作经济联合社1-待检测',
+						eNum:7,
+						inspectorNumber:3,
+						address:'中山市小榄镇竹源路36号',
+						time:'2019-08-16',
+						townShips:['小榄镇','东升镇','南头镇'],
+						tags:['起重机','法定检验','年度检验']
+					}
+				]
+				
+				callBack && callBack();
+				return tempTaskArr;
 			}
 		},
 		components:{
 			'task-item':taskItem,
 			'uni-icons':uniIcons,
 			'uni-search-bar':uniSearchBar
+		},
+		//下拉加载数据（模拟）
+		onReachBottom() {
+			console.log('触底了');
 			
+			var tempTaskArr1 = this.getTaskItem();
+			//虚拟三页
+			
+			
+			if(this.taskPageIndex < 3){
+				this.taskArr = [...this.taskArr,...tempTaskArr1];
+				this.taskPageIndex++;
+			}else{
+				this.noMoreTask = true
+			}
+			
+		},
+		//上拉刷新
+		onPullDownRefresh(){
+			this.taskArr = [];
+			this.noMoreTask = false;
+			this.taskPageIndex  = 1;
+			setTimeout(()=>{
+				this.taskArr = this.getTaskItem(()=>{
+					uni.stopPullDownRefresh()
+				});
+			},1000)
 		}
+		
 	}
 </script>
 
@@ -362,5 +334,14 @@
 }
 .index-tab uni-text.uni-searchbar__cancel{
 	color:#ffffff !important;
+}
+.no-more-task{
+	height:100rpx;
+	width:100%;
+	display: block;
+	line-height:100rpx;
+	color:#aeaeae;
+	text-align: center;
+	font-size:28rpx;
 }
 </style>

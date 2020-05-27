@@ -4,8 +4,10 @@
 			//首页-任务列表页
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "任务"
+				"navigationBarTitleText": "任务",
+				"enablePullDownRefresh":true
 			}
+			
 		}
 	    ,{
 			//我的
@@ -51,6 +53,7 @@
             "path" : "pages/difficultReason/difficultReason",
             "style" : {}
         }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

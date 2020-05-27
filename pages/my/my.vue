@@ -51,8 +51,9 @@
 						id:'waitingTest',
 						title:'待检测',
 						num:7,
-						url:'/pages/index/index?tab=waitingTest',
-						urlType:'switchTab'
+						url:'/pages/index/index',
+						urlType:'switchTab',
+						button:''
 					},{
 						id:'msg',
 						title:'消息',
@@ -61,15 +62,19 @@
 						urlType:'navTo'
 					},
 					{
-						id:'lostOrder',
-						title:'累计丢单',
-						num:10
+						id:'difficultList',
+						title:'疑难单',
+						num:10,
+						url:'/pages/index/index',
+						urlType:'switchTab',
+						button:"去分配"
 					},{
 						id:'finished',
 						title:'累计完成',
 						num:10,
-						url:'/pages/index/index?tab=finished',
-						urlType:'switchTab'
+						url:'/pages/index/index',
+						urlType:'switchTab',
+						button:''
 					}
 				],
 				menuArr:[
@@ -98,7 +103,17 @@
 				if(grid.urlType && grid.urlType == 'switchTab'){
 					uni.switchTab({
 						url:grid.url
+					});
+					uni.setStorage({
+						key:'currentTab',
+						data:{
+							id:grid.id,
+							title:grid.title,
+							button:grid.button
+						}
 					})
+					
+					
 				}else if(grid.urlType && grid.urlType=='navTo'){
 					uni.navigateTo({
 						url:grid.url
@@ -111,50 +126,7 @@
 </script>
 
 <style>
-@font-face {font-family: "iconfont";
-  src: url('~@/static/iconfont-my/iconfont.ttf'); /* IE9 */
-  src: url('~@/static/iconfont-my/iconfont.eot') format('embedded-opentype'), /* IE6-IE8 */
-  url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
-  url('~@/static/iconfont-my/iconfont.woff') format('woff'),
-  url('~@/static/iconfont-my/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('~@/static/iconfont-my/iconfont.svg') format('svg'); /* iOS 4.1- */
-}
 
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 36rpx;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: inline-block;
-  color:#65B7E7;
-}
-
-.icon-jiantou:before {
-  content: "\e621";
-  color: #A6A4A4;
-}
-
-.icon-huangguan:before {
-  content: "\e620";
-}
-
-.icon-liwu:before {
-  content: "\e60a";
-}
-
-.icon-shoucang:before {
-  content: "\e613";
-}
-
-.icon-gongwenbao:before {
-  content: "\e70b";
-}
-
-.icon-rili:before {
-  content: "\e64f";
-  color: #DF0902;
-}
 
 .container{
 	background-color: #f2f2f2;
