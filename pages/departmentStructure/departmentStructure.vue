@@ -3,13 +3,15 @@
 		<view class="top">
 			<view class="top-left">请选择检测员</view>
 			<view class="top-right">
-				<block v-for="(item,index) in rightView" :key="item.id" v-if="item.checked">
-					<view class="right-select">
-						<view class="select-name">{{item.name}}</view>
-						<view class="select-close"><image src="../../static/images/icon/close.png"></image></view>
-					</view>
+				<block v-for="(d,index1) in dataList" :key="d.groupId">
+					<block v-for="(item,index) in d.subs" :key="item.id" v-if="item.checked">
+						<view class="right-select">
+							<view class="select-name">{{item.name}}</view>
+							<view class="select-close" @click="deleteMember(item,index)"><image src="../../static/images/icon/close.png"></image></view>
+						</view>
+					</block>
+					
 				</block>
-				
 				<!--
 				<view class="right-select">
 					<view class="select-name">张一</view>
@@ -143,7 +145,7 @@
 						groupName:"检测组二",
 						subs:[
 							{
-								id:0,
+								id:8,
 								name:"总数",
 								src:"../../static/images/icon/inspector.png",
 								num:2222,
@@ -151,7 +153,7 @@
 								checked:false
 							},
 							{
-								id:1,
+								id:9,
 								name:"张二",
 								src:"../../static/logo.png",
 								num:0,
@@ -159,7 +161,7 @@
 								checked:false
 							},
 							{
-								id:2,
+								id:10,
 								name:"张二",
 								src:"../../static/logo.png",
 								num:0,
@@ -173,21 +175,21 @@
 						groupName:"检测组三",
 						subs:[
 							{
-								id:0,
+								id:11,
 								name:"总数",
 								src:"../../static/images/icon/inspector.png",
 								num:3333,
 								star:4,
 								checked:false
 							},
-							{   id:1,
+							{   id:12,
 								name:"张三",
 								src:"../../static/logo.png",
 								num:0,
 								star:3,
 								checked:false
 							},
-							{   id:2,
+							{   id:13,
 								name:"张三",
 								src:"../../static/logo.png",
 								num:0,
@@ -201,7 +203,7 @@
 						groupName:"检测组四",
 						subs:[
 							{
-								id:0,
+								id:14,
 								name:"总数",
 								src:"../../static/images/icon/inspector.png",
 								num:4444,
@@ -209,7 +211,7 @@
 								checked:false
 							},
 							{
-								id:1,
+								id:15,
 								name:"张四",
 								src:"../../static/logo.png",
 								num:0,
@@ -217,7 +219,7 @@
 								checked:false
 							},
 							{
-								id:2,
+								id:16,
 								name:"张四",
 								src:"../../static/logo.png",
 								num:0,
@@ -231,7 +233,7 @@
 						groupName:"检测组五",
 						subs:[
 							{
-								id:0,
+								id:7,
 								name:"总数",
 								src:"../../static/images/icon/inspector.png",
 								num:5555,
@@ -239,7 +241,7 @@
 								checked:false
 							},
 							{
-								id:1,
+								id:18,
 								name:"张五",
 								src:"../../static/logo.png",
 								num:0,
@@ -247,7 +249,7 @@
 								checked:false
 							},
 							{
-								id:2,
+								id:19,
 								name:"张五",
 								src:"../../static/logo.png",
 								num:0,
@@ -261,7 +263,7 @@
 						groupName:"检测组六",
 						subs:[
 							{
-								id:0,
+								id:20,
 								name:"总数",
 								src:"../../static/images/icon/inspector.png",
 								num:6666,
@@ -269,7 +271,7 @@
 								checked:false
 							},
 							{
-								id:1,
+								id:21,
 								name:"张六",
 								src:"../../static/logo.png",
 								num:0,
@@ -277,7 +279,7 @@
 								checked:false
 							},
 							{
-								id:2,
+								id:22,
 								name:"张六",
 								src:"../../static/logo.png",
 								num:0,
@@ -294,6 +296,7 @@
 				rightView:[],//右边内容
 				groupName:'',
 			    isActive: 0 ,//默认激活的选项卡,
+				selectedMember:[]
 				
 			}
 		},
@@ -316,7 +319,44 @@
 			checkBox(e, item) {
 				let that = this;
 				let box = (item.checked = !item.checked);
+				if(item.checked == true){
+					this.selectedMember.push(item)
+				}else{
+					let thisIndex = -1; 
+					this.selectedMember.find((item2,index)=>{
+						if(item2.id == item.id){
+							thisIndex = index;
+							console.log('222',thisIndex)
+						}
+					})
+					if(thisIndex > -1){
+						this.selectedMember.splice(thisIndex,1)
+					}
+					 // console.log('1',this.selectedMember)
+				}
 			},
+			deleteMember(item){
+				let thisIndex = -1; 
+				this.selectedMember.find((item2,index)=>{
+					if(item2.id == item.id){
+						thisIndex = index
+					}
+				})
+				if(thisIndex > -1){
+					this.selectedMember.splice(thisIndex,1)
+				}
+				
+				
+				this.dataList.forEach(d=>{
+					d.subs.find(subItem=>{
+						if(subItem.id == item.id){
+							subItem.checked = false
+						}
+					})
+				})
+				// console.log('2',this.selectedMember)
+				
+			}
 		}
 	}
 </script>

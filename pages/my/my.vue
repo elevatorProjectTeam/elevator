@@ -85,6 +85,12 @@
 						urlType:'navTo'
 					},
 					{
+						title:'组织结构',
+						icon:'icon-shoucang',
+						url:'/pages/departmentStructure/departmentStructure',
+						urlType:'navTo'
+					},
+					{
 						title:'绑定手机',
 						icon:'icon-liwu',
 						info:'133********'
